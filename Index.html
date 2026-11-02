@@ -1,0 +1,2111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PrepX - Prepare Smart. Rise Higher.</title>
+
+.
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 16px;
+  background: linear-gradient(160deg, #071426, #10223c, #081426);
+  color: #f1f5f9;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+}
+
+header {
+  text-align: center;
+  padding: 25px 14px;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #123c66, #075985);
+  border: 1px solid #2563eb;
+  border-radius: 22px;
+  box-shadow: 0 8px 25px #0005;
+}
+
+h1 {
+  color: #67e8f9;
+  font-size: 29px;
+  margin: 4px 0 10px;
+}
+
+h2, h3 {
+  color: #7dd3fc;
+}
+
+.muted {
+  color: #bdcbe0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.card {
+  background: linear-gradient(145deg, #1a2d48, #12233a);
+  border: 1px solid #304967;
+  border-radius: 18px;
+  padding: 18px;
+  margin: 15px 0;
+  box-shadow: 0 6px 20px #0003;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.exam {
+  background: linear-gradient(145deg, #254568, #172d49);
+  color: white;
+  border: 1px solid #42658c;
+  border-radius: 15px;
+  padding: 16px 10px;
+  text-align: center;
+  min-height: 95px;
+  font-size: 14px;
+  transition: transform 0.15s;
+}
+
+.exam:active {
+  transform: scale(0.97);
+}
+
+.exam span {
+  display: block;
+  font-size: 27px;
+  margin-bottom: 9px;
+}
+
+button {
+  cursor: pointer;
+  font-weight: bold;
+  font-family: inherit;
+}
+
+.primary {
+  width: 100%;
+  border: 1px solid #34d399;
+  border-radius: 13px;
+  padding: 15px;
+  background: linear-gradient(135deg, #34d399, #10b981);
+  color: #052e24;
+  font-size: 16px;
+  margin-top: 12px;
+  box-shadow: 0 4px 14px #0003;
+}
+
+.option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: 1px solid #405875;
+  background: #20344f;
+  color: #f8fafc;
+  padding: 15px;
+  border-radius: 12px;
+  margin: 10px 0;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.option.selected {
+  background: #075985;
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 1px #38bdf8;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  color: #67e8f9;
+  font-weight: bold;
+}
+
+#test, #result, #section {
+  display: none;
+}
+
+#question {
+  line-height: 1.7;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 18px 0;
+}
+
+#score {
+  color: #6ee7b7;
+  text-align: center;
+  font-size: 28px;
+}
+
+#details {
+  color: #dbeafe;
+  line-height: 1.8;
+  text-align: center;
+}
+
+#review {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 360px) {
+  body {
+    padding: 10px;
+  }
+
+  .card {
+    padding: 13px;
+  }
+
+  .exam {
+    font-size: 13px;
+    padding: 12px 6px;
+  }
+}
+
+.hero{
+  padding:24px 18px;
+  margin:10px 0 24px;
+  border:1px solid #345578;
+  border-radius:22px;
+  background:linear-gradient(135deg,#173b68,#12304b 60%,#10243d);
+  box-shadow:0 12px 28px #02061755;
+}
+.hero-tag{
+  color:#67e8f9;
+  font-size:10px;
+  font-weight:bold;
+  letter-spacing:1.3px;
+}
+.hero h2{font-size:25px;line-height:1.25;margin:16px 0 8px;color:#fff}
+.hero>p:not(.hero-tag){color:#c5d5e8;font-size:13px;line-height:1.6}
+.hero-stats{display:flex;gap:12px;margin-top:22px}
+.hero-stats div{
+  flex:1;padding:12px;background:#ffffff0c;
+  border:1px solid #ffffff18;border-radius:13px
+}
+.hero-stats strong,.hero-stats span{display:block}
+.hero-stats strong{font-size:21px;color:#67e8f9}
+.hero-stats span{font-size:11px;color:#d1deed;margin-top:5px}
+.home-heading{display:flex;justify-content:space-between;align-items:center;margin:0 2px 14px}
+.home-heading h2{font-size:20px;margin:0 0 5px}
+.home-heading p{margin:0}
+.section-badge{
+  font-size:10px;font-weight:bold;letter-spacing:1px;
+  color:#67e8f9;background:#164e63;padding:8px 10px;border-radius:20px
+}
+.grid{gap:12px}
+.exam{
+  min-height:118px;padding:15px 6px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:5px;border-radius:17px;
+  background:linear-gradient(145deg,#203b5b,#172b43);
+  border:1px solid #36516f;
+  box-shadow:0 5px 12px #02061735;
+}
+.exam span{font-size:27px;margin-bottom:4px}
+.exam strong{font-size:14px}
+.exam small{font-size:11px;color:#b8cbe0}
+.exam:active{transform:scale(.97);border-color:#67e8f9}
+.study-card{
+  display:grid;grid-template-columns:auto 1fr auto;gap:12px;
+  align-items:center;margin-top:24px;padding:18px;
+  border:1px solid #31506b;border-radius:19px;
+  background:linear-gradient(135deg,#172b43,#122239);
+}
+.study-icon{font-size:27px;background:#164e63;padding:11px;border-radius:14px}
+.study-card h3{margin:0 0 6px;font-size:17px}
+.study-card p{margin:0;color:#b6c3d8;font-size:12px;line-height:1.5}
+.study-arrow{color:#67e8f9;font-size:20px}
+.subject-chips{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;margin-top:5px}
+.subject-chips span{
+  font-size:11px;color:#d8e8f7;background:#263d56;
+  border:1px solid #3b526c;border-radius:20px;padding:8px 10px
+}
+  
+/* ===== PREPX: PREMIUM UI UPGRADE ===== */
+
+body {
+  background:
+    radial-gradient(ellipse at top, #17365c 0%, transparent 48%),
+    linear-gradient(160deg, #07111f, #0b1729 55%, #07111f);
+  color: #f1f5f9;
+  line-height: 1.5;
+}
+
+header {
+  background: linear-gradient(135deg, #0f2744, #075985);
+  border: 1px solid #38bdf8;
+  border-radius: 24px;
+  box-shadow: 0 12px 32px #0005, inset 0 1px #ffffff18;
+}
+
+h1 {
+  letter-spacing: -0.6px;
+  text-shadow: 0 0 22px #22d3ee30;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #164e75, #102743 65%, #0c1b30);
+  border: 1px solid #38bdf855;
+  box-shadow: 0 14px 35px #0005;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  right: -65px;
+  top: -65px;
+  border-radius: 50%;
+  background: #38bdf815;
+  border: 1px solid #38bdf820;
+  pointer-events: none;
+}
+
+.card {
+  background: linear-gradient(145deg, #192d46, #101f33);
+  border: 1px solid #344d6b;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px #0003;
+}
+
+.grid {
+  gap: 14px;
+}
+
+.exam {
+  position: relative;
+  overflow: hidden;
+  min-height: 125px;
+  border: 1px solid #3b5b7c;
+  border-radius: 19px;
+  background: linear-gradient(145deg, #203e60, #12263e);
+  box-shadow: 0 7px 18px #0003;
+  transition: transform 0.18s, border-color 0.18s;
+}
+
+.exam:active {
+  transform: scale(0.97);
+  border-color: #67e8f9;
+}
+
+.exam span {
+  filter: drop-shadow(0 3px 8px #0004);
+}
+
+.primary {
+  min-height: 50px;
+  border: 1px solid #6ee7b7;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #6ee7b7, #10b981);
+  box-shadow: 0 6px 18px #10b98125;
+  transition: transform 0.15s, filter 0.15s;
+}
+
+.primary:active {
+  transform: scale(0.985);
+  filter: brightness(0.94);
+}
+
+.option {
+  border-radius: 15px;
+  background: #182c44;
+  border-color: #3a526e;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.option.selected {
+  background: linear-gradient(135deg, #075985, #164e63);
+  border-color: #67e8f9;
+}
+
+.study-card {
+  background: linear-gradient(135deg, #192f49, #101f33);
+  border-color: #3b5674;
+  border-radius: 21px;
+  box-shadow: 0 8px 22px #0003;
+}
+
+.study-icon {
+  background: linear-gradient(135deg, #155e75, #164e63);
+}
+
+.subject-chips span {
+  border-color: #3b5876;
+  background: #1a3049;
+}
+
+button, .exam {
+  -webkit-tap-highlight-color: transparent;
+}
+
+#question {
+  line-height: 1.75;
+}
+
+#score {
+  text-shadow: 0 0 20px #34d39925;
+}
+
+@media (max-width: 360px) {
+  .hero h2 {
+    font-size: 22px;
+  }
+
+  .hero-stats {
+    gap: 8px;
+  }
+
+  .hero-stats div {
+    padding: 10px 8px;
+  }
+
+  .exam {
+    min-height: 112px;
+  }
+}
+  
+/* ===== HOME SCREEN POLISH ===== */
+
+.home-heading {
+  margin-top: 28px;
+  margin-bottom: 16px;
+  gap: 10px;
+}
+
+.home-heading h2 {
+  font-size: 21px;
+  letter-spacing: -0.3px;
+}
+
+.section-badge {
+  border: 1px solid #22d3ee35;
+  white-space: nowrap;
+  box-shadow: 0 3px 12px #0002;
+}
+
+.hero-tag {
+  display: inline-block;
+  padding: 7px 10px;
+  border: 1px solid #67e8f930;
+  border-radius: 20px;
+  background: #082f494d;
+}
+
+.hero h2 {
+  font-size: 27px;
+  letter-spacing: -0.5px;
+}
+
+.hero-stats div {
+  background: #07142655;
+  border-color: #ffffff20;
+}
+
+.hero-stats strong {
+  letter-spacing: -0.5px;
+}
+
+.exam small {
+  line-height: 1.4;
+}
+
+.study-card {
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+@media (max-width: 400px) {
+  .home-heading h2 {
+    font-size: 18px;
+  }
+
+  .section-badge {
+    padding: 7px 8px;
+    font-size: 9px;
+  }
+
+  .hero h2 {
+    font-size: 23px;
+  }
+}
+
+/* ===== PREPX PREMIUM HOME ===== */
+
+#home {
+  padding-bottom: 25px;
+}
+
+#home .hero {
+  background: linear-gradient(135deg, #102b49, #075985, #164e63);
+  border: 1px solid #38bdf8;
+  border-radius: 24px;
+  padding: 30px 22px;
+  box-shadow: 0 10px 30px #0005;
+}
+
+#home .hero h2 {
+  color: #67e8f9;
+  font-size: 29px;
+  line-height: 1.3;
+}
+
+#home .hero-stats div {
+  border: 1px solid #67e8f955;
+  border-radius: 16px;
+  background: #07142677;
+}
+
+#home #streakCard {
+  border: 1px solid #f59e0b55;
+  background: linear-gradient(135deg, #172b42, #142238);
+  border-radius: 20px;
+  box-shadow: 0 8px 22px #0003;
+}
+
+#home #streakCard h3 {
+  color: #fbbf24;
+}
+
+#home .study-card {
+  border: 1px solid #38bdf855;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #153653, #10243c);
+  box-shadow: 0 7px 20px #0003;
+  padding: 18px;
+}
+
+#home .study-card h3 {
+  color: #67e8f9;
+}
+
+#home .exam {
+  border: 1px solid #38bdf855;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #193c5c, #10243b);
+  min-height: 125px;
+  box-shadow: 0 6px 16px #0003;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+#home .exam:active {
+  transform: scale(0.97);
+}
+
+#home .exam span {
+  font-size: 30px;
+}
+
+#home .exam strong {
+  color: #f1f5f9;
+}
+
+#home .exam small {
+  color: #a5c5dc;
+}
+
+#home .home-heading {
+  margin-top: 30px;
+}
+
+#home .card {
+  border-radius: 20px;
+  border: 1px solid #38bdf833;
+  box-shadow: 0 7px 20px #0003;
+}
+
+#home .primary {
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+/* ===== PREMIUM ANSWER OPTIONS ===== */
+
+#test #options {
+  display: grid;
+  gap: 12px;
+}
+
+#test .option {
+  width: 100%;
+  min-height: 68px;
+  padding: 16px 18px;
+  text-align: left;
+  border: 1px solid #3b5874;
+  border-radius: 17px;
+  background: linear-gradient(135deg, #1b334d, #172b42);
+  color: #f1f5f9;
+  font-size: 17px;
+  font-weight: 600;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+#test .option.selected {
+  background: linear-gradient(135deg, #075985, #0e7490);
+  border: 2px solid #67e8f9;
+  color: #ffffff;
+  box-shadow: 0 0 12px #22d3ee44;
+}
+
+/* ===== MOCK TEST ACTION BUTTONS ===== */
+
+#test #bookmarkBtn {
+  background: linear-gradient(135deg, #164e63, #155e75);
+  color: #a5f3fc;
+  border: 1px solid #22d3ee;
+  box-shadow: 0 4px 14px #0891b233;
+}
+
+#test button.primary:not(#bookmarkBtn) {
+  background: linear-gradient(135deg, #34d399, #10b981);
+  color: #052e2b;
+  border: 1px solid #6ee7b7;
+  box-shadow: 0 5px 15px #10b98133;
+}
+
+#test button.primary:active {
+  transform: scale(0.98);
+}
+
+/* ===== PREMIUM RESULT SCREEN ===== */
+
+#result {
+  background: linear-gradient(145deg, #172b42, #102238);
+  border: 1px solid #38bdf855;
+  border-radius: 22px;
+  padding: 22px;
+  box-shadow: 0 8px 25px #0004;
+}
+
+#result h2 {
+  color: #7dd3fc;
+  font-size: 27px;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+#result #score {
+  color: #6ee7b7;
+  text-align: center;
+  font-size: 36px;
+  padding: 22px 12px;
+  background: linear-gradient(135deg, #064e3b55, #0f766e33);
+  border: 1px solid #34d39977;
+  border-radius: 18px;
+  margin: 15px 0;
+}
+
+#result #details {
+  color: #cbd5e1;
+  text-align: center;
+  font-size: 17px;
+  line-height: 1.8;
+  padding: 12px;
+  background: #0b304955;
+  border-radius: 14px;
+  margin-bottom: 22px;
+}
+
+#result #review > div {
+  background: linear-gradient(135deg, #1b334d, #172b42);
+  border: 1px solid #64748b88;
+  border-radius: 17px;
+  padding: 18px;
+  margin: 14px 0;
+  line-height: 1.7;
+}
+
+#result button.primary {
+  width: 100%;
+  min-height: 54px;
+  border-radius: 14px;
+  margin-top: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #34d399, #10b981);
+  color: #052e2b;
+  border: 1px solid #6ee7b7;
+  box-shadow: 0 5px 15px #10b98133;
+}
+
+/* ===== PREMIUM SAVED QUESTIONS SCREEN ===== */
+
+#savedQuestions {
+  background: linear-gradient(145deg, #172b42, #102238);
+  border: 1px solid #38bdf855;
+  border-radius: 22px;
+  padding: 22px;
+  box-shadow: 0 8px 25px #0004;
+}
+
+#savedQuestions h2 {
+  color: #67e8f9;
+  font-size: 25px;
+  margin-bottom: 18px;
+}
+
+#savedQuestions #savedQuestionMessage {
+  color: #b6c8da;
+  line-height: 1.6;
+  padding: 14px;
+  background: #0b304955;
+  border-radius: 13px;
+}
+
+#savedQuestions #savedQuestionList > div {
+  background: linear-gradient(135deg, #1b334d, #172b42);
+  border: 1px solid #38bdf855;
+  border-radius: 16px;
+  padding: 17px;
+  margin: 13px 0;
+  color: #f1f5f9;
+  line-height: 1.7;
+}
+
+#savedQuestions button.primary {
+  width: 100%;
+  min-height: 54px;
+  margin-top: 16px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #34d399, #10b981);
+  color: #052e2b;
+  border: 1px solid #6ee7b7;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* ===== PREMIUM MOCK TEST HISTORY ===== */
+
+#history {
+  padding-bottom: 25px;
+}
+
+#history > .card {
+  background: linear-gradient(145deg, #172b42, #102238);
+  border: 1px solid #38bdf855;
+  border-radius: 22px;
+  padding: 20px;
+  box-shadow: 0 8px 25px #0004;
+}
+
+#history h2 {
+  color: #67e8f9;
+  font-size: 25px;
+}
+
+#history h3 {
+  color: #7dd3fc;
+}
+
+#history .muted {
+  color: #a5bdd2;
+  line-height: 1.6;
+}
+
+#historySummary,
+#progressChart,
+#progressMessage,
+#historyList {
+  background: #0b304955;
+  border: 1px solid #38bdf833;
+  border-radius: 16px;
+  padding: 15px;
+  margin-top: 14px;
+}
+
+#historyList > div {
+  background: linear-gradient(135deg, #1b334d, #172b42);
+  border: 1px solid #38bdf855;
+  border-radius: 15px;
+  padding: 16px;
+  margin: 12px 0;
+  color: #f1f5f9;
+  line-height: 1.7;
+}
+
+#history button.primary {
+  width: 100%;
+  min-height: 54px;
+  margin-top: 12px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #34d399, #10b981);
+  color: #052e2b;
+  border: 1px solid #6ee7b7;
+}
+
+/* ===== PREMIUM STUDY CORNER ===== */
+
+#home .subject-chips {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  width: 100%;
+  margin-top: 16px;
+}
+
+#home .subject-chips span {
+  display: block;
+  text-align: center;
+  padding: 13px 8px;
+  border-radius: 13px;
+  background: linear-gradient(135deg, #164e63, #153653);
+  border: 1px solid #38bdf866;
+  color: #e0f2fe;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px #0003;
+}
+
+#home .study-arrow {
+  color: #67e8f9;
+  font-size: 22px;
+}
+/* ===== PREMIUM EXAM SELECTION ===== */
+
+#home .exam {
+  position: relative;
+  overflow: hidden;
+  padding: 18px;
+  text-align: left;
+}
+
+#home .exam span {
+  display: block;
+  margin-bottom: 12px;
+}
+
+#home .exam strong {
+  display: block;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+#home .exam small {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+}
+/* ===== PREPX PREMIUM HEADER ===== */
+
+header {
+  text-align: center;
+  padding: 22px 16px;
+  margin-bottom: 22px;
+  background: linear-gradient(135deg, #102b49, #075985, #164e63);
+  border: 1px solid #38bdf877;
+  border-radius: 0 0 24px 24px;
+  box-shadow: 0 8px 24px #0004;
+}
+
+header h1 {
+  color: #67e8f9;
+  font-size: 27px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  margin: 0 0 8px;
+}
+
+header .muted {
+  color: #c5e7f5;
+  font-size: 13px;
+  letter-spacing: 0.4px;
+  }
+  /* ===== MOBILE RESPONSIVE POLISH ===== */
+
+* {
+  box-sizing: border-box;
+}
+
+#home,
+#history,
+#section,
+#test,
+#result,
+#savedQuestions {
+  width: 100%;
+  max-width: 100%;
+}
+
+#home .grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+#home .exam {
+  min-width: 0;
+}
+
+#home .exam strong,
+#home .exam small {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 360px) {
+  #home .hero {
+    padding: 22px 15px;
+  }
+
+  #home .hero h2 {
+    font-size: 24px;
+  }
+
+  #home .exam {
+    padding: 14px 10px;
+  }
+}
+
+/* ===== PREPX PREMIUM SPLASH SCREEN ===== */
+
+#splashScreen {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at center, #123b60 0%, #08182c 48%, #020817 100%);
+  color: #ffffff;
+  text-align: center;
+}
+
+.splash-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px;
+}
+
+.splash-logo {
+  width: 112px;
+  height: 112px;
+  display: grid;
+  place-items: center;
+  border: 3px solid #d6a943;
+  border-radius: 30px;
+  background: linear-gradient(145deg, #173e67, #071629);
+  color: #67e8f9;
+  font-size: 43px;
+  font-weight: 900;
+  letter-spacing: -4px;
+  box-shadow: 0 0 30px #0ea5e966, 0 0 18px #d6a94355;
+}
+
+.splash-content h1 {
+  margin: 22px 0 5px;
+  font-size: 38px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.splash-content h1 span {
+  color: #38bdf8;
+}
+
+.splash-content p {
+  color: #d6b76a;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.splash-loader {
+  width: 145px;
+  height: 4px;
+  margin-top: 32px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #29445e;
+}
+
+.splash-loader::after {
+  content: "";
+  display: block;
+  width: 45%;
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #38bdf8, #f5c451);
+  animation: splashLoading 0.3s ease-in-out infinite;
+}
+
+.splash-content small {
+  margin-top: 13px;
+  color: #9db7d0;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+@keyframes splashLoading {
+  from { transform: translateX(-110%); }
+  to { transform: translateX(330%); }
+}
+/* ===== PREPX SPLASH LOGO IMAGE ===== */
+
+.splash-content img {
+  width: 155px;
+  height: 155px;
+  object-fit: contain;
+  border-radius: 25px;
+  filter: drop-shadow(0 0 18px #38bdf866);
+  animation: logoReveal 0.9s ease-out;
+}
+
+@keyframes logoReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.75);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+  /* ===== PREPX PREMIUM LOGIN DESIGN ===== */
+
+#loginScreen {
+  min-height: 75vh;
+  padding: 25px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #08182c;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 420px;
+  padding: 30px 22px;
+  text-align: center;
+  background: linear-gradient(145deg, #153653, #10243c);
+  border: 1px solid #38bdf8;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px #0005;
+}
+
+.login-box h1 {
+  color: #67e8f9;
+  font-size: 28px;
+}
+
+.login-box p {
+  color: #c5e7f5;
+  margin-bottom: 25px;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 15px;
+  margin: 9px 0;
+  border: 1px solid #38bdf8;
+  border-radius: 13px;
+  background: linear-gradient(135deg, #075985, #164e63);
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+</style>
+
+</head>
+
+<script>
+window.addEventListener("load", function () {
+  setTimeout(function () {
+    const splash = document.getElementById("splashScreen");
+    if (splash) {
+      splash.style.transition = "opacity 0.6s ease";
+      splash.style.opacity = "0";
+
+      setTimeout(function () {
+        splash.style.display = "none";
+      }, 600);
+    }
+  }, 2200);
+});
+</script>
+
+<body>
+
+<!-- ===== PREPX SPLASH SCREEN ===== -->
+<div id="splashScreen">
+  <div class="splash-content">
+    <div class="splash-logo"><img src="prep-logo.png" alt="PrepX Logo" style="width:100%;height:100%;object-fit:contain;border-radius:inherit;"></div>
+    <h1>Prep<span>X</span></h1>
+    <p>PREPARE SMART. RISE HIGHER.</p>
+    <div class="splash-loader"></div>
+    <small>GETTING READY...</small>
+  </div>
+</div>
+<!-- ===== PREPX LOGIN SCREEN ===== -->
+<div id="loginScreen" style="display:none;">
+  <div class="login-box">
+    <h1>Welcome to PrepX</h1>
+    <p>Sign in to continue your preparation</p>
+
+    <button onclick="loginWithGoogle()">
+      Continue with Google
+    </button>
+
+    <button onclick="loginWithPhone()">
+      Continue with Phone Number
+    </button>
+    
+  <input
+  type="tel"
+  id="phoneNumber"
+  placeholder="Enter phone number (+91...)"
+  autocomplete="tel"
+/>
+
+<button onclick="sendPhoneOTP()">
+  Send OTP
+</button>
+
+<input
+  type="text"
+  id="otpCode"
+  placeholder="Enter OTP"
+  inputmode="numeric"
+  autocomplete="one-time-code"
+/>
+
+<button onclick="verifyPhoneOTP()">
+  Verify OTP
+</button>  
+<div id="recaptcha-container"></div>
+    <p id="loginMessage"></p>
+  </div>
+</div>
+  
+<header>
+<h1> PREPX</h1>
+<div class="muted">Practice Today • Improve Every Day</div>
+</header>
+
+
+<section id="home">
+  <div class="hero">
+    <p class="hero-tag">🎯 YOUR EXAM PREPARATION PARTNER</p>
+    <h2>Welcome to PrepX</h2>
+    <div class="hero-stats">
+      <div><strong>08</strong><span>Exam Categories</span></div>
+      <div><strong>24/7</strong><span>Practice Anytime</span></div>
+    </div>
+  </div>
+    
+<div class="card" id="streakCard">
+  <h3>🔥 Daily Study Streak</h3>
+  <p>Current Streak: <b id="currentStreak">0 days</b></p>
+  <p>Longest Streak: <b id="longestStreak">0 days</b></p>
+  <p id="streakMessage" class="muted">
+    Complete a mock test today to start your streak!
+  </p>
+</div>
+<div class="study-card" onclick="showSavedQuestions()" style="cursor:pointer;">
+  <div class="study-icon">🔖</div>
+  <div>
+    <h3>Saved Questions</h3>
+    <p>Revise your bookmarked questions</p>
+    <span id="bookmarkCount">0 questions saved</span>
+  </div>
+</div>
+
+  <div class="home-heading">
+    <div>
+      <h2>Choose Your Exam</h2>
+      <p class="muted">Select a category to get started.</p>
+    </div>
+    <span class="section-badge">EXAMS</span>
+  </div>
+
+  <div class="grid">
+    <button class="exam" onclick="openExam('SSC GD')">
+      <span>🛡️</span>
+      <strong>SSC GD</strong>
+      <small>Constable</small>
+    </button>
+    <button class="exam" onclick="openExam('RRB RPF')">
+      <span>🚆</span>
+      <small>Constable</small>
+    </button>
+    <button class="exam" onclick="openExam('Railway')">
+      <span>🚄</span>
+      <strong>Railway</strong>      <strong>RRB RPF</strong>
+
+      <small>Exams</small>
+    </button>
+    <button class="exam" onclick="openExam('Police')">
+      <span>👮</span>
+      <strong>Police</strong>
+      <small>Exams</small>
+    </button>
+    <button class="exam" onclick="openExam('Defence')">
+      <span>🎖️</span>
+      <strong>Defence</strong>
+      <small>Exams</small>
+    </button>
+    <button class="exam" onclick="openExam('Banking')">
+      <span>🏦</span>
+      <strong>Banking</strong>
+      <small>Exams</small>
+    </button>
+    <button class="exam" onclick="openExam('State Government')">
+      <span>🏛️</span>
+      <strong>State Govt.</strong>
+      <small>Exams</small>
+    </button>
+    <button class="exam" onclick="openExam('Teaching')">
+      <span>📚</span>
+      <strong>Teaching</strong>
+      <small>Exams</small>
+    </button>
+  </div>
+  
+<div class="card">
+  <h3>📊 Your Progress</h3>
+  <p class="muted">Track your previous mock test scores.</p>
+  <button class="primary" onclick="openHistory()">
+    View Mock Test History
+  </button>
+</div>
+
+
+  <div class="study-card">
+    <div class="study-icon">📖</div>
+    <div>
+      <h3>Study Corner</h3>
+      <p>Build your skills one topic at a time.</p>
+    </div>
+    <span class="study-arrow">✦</span>
+    <div class="subject-chips">
+      <span>🧠 Reasoning</span>
+      <span>🌍 General Knowledge</span>
+      <span>➗ Maths</span>
+      <span>🔤 English</span>
+    </div>
+  </div>
+</section>
+
+<section id="history" style="display:none">
+  <div class="card">
+    <h2>📊 Mock Test History</h2>
+    <p class="muted">Your previous test scores and progress.</p>
+    <div id="historySummary"></div>
+<div class="card">
+  <h3>📈 Score Improvement</h3>
+  <p class="muted">Compare your recent mock test scores.</p>
+  <div id="progressChart"></div>
+  <div id="progressMessage" class="muted"></div>
+</div>
+
+    <div id="historyList"></div>
+    <button class="primary" onclick="showHistory()">Refresh History</button>
+    <button class="primary" onclick="backHome()">Back to Home</button>
+  </div>
+</section>
+
+<section id="section" class="card">
+<h2 id="examTitle">Exam Practice</h2>
+<p id="examDesc" class="muted"></p>
+<div id="startArea">
+<p>SSC GD currently has a 25-question demo test. Other exam sections will be ready for their own question sets in future updates.</p>
+<button class="primary" id="startBtn" onclick="begin()">Start 25-Question Test</button>
+</div>
+<button class="primary" onclick="goHome()">← Back to All Exams</button>
+</section>
+
+<section id="test" class="card">
+<div class="top"><span id="progress"></span><span id="timer">25:00</span></div>
+<p id="category" class="muted"></p>
+<h3 id="question"></h3>
+<div id="options"></div>
+<p id="feedback" style="color:#fbbf24"></p>
+  <button class="primary" id="bookmarkBtn" onclick="toggleBookmark()">
+  ☆ Bookmark Question
+  </button>
+<button class="primary" onclick="nextQ()">Next Question</button>
+</section>
+<section id="savedQuestions" class="card" style="display:none;">
+  <h2>🔖 Saved Questions</h2>
+  <p id="savedQuestionMessage">Your bookmarked questions will appear here.</p>
+  <div id="savedQuestionList"></div>
+  <button class="primary" onclick="goHome()">Back to Home</button>
+</section>
+<section id="result" class="card">
+<h2>Test Completed! 🎉</h2>
+<h1 id="score"></h1>
+<p id="details"></p>
+<div id="review"></div>
+  <button class="primary" onclick="retryWrong()">Retry Wrong Questions</button>
+<button class="primary" onclick="begin()">Try Again</button>
+<button class="primary" onclick="goHome()">Back to Home</button>
+</section>
+
+<script>
+const qs=[
+  
+["GK","What is the capital of India?",["Mumbai","New Delhi","Jaipur","Bhopal"],1],
+["GK","Who is known as the Father of the Indian Constitution?",["Mahatma Gandhi","B. R. Ambedkar","Jawaharlal Nehru","Sardar Patel"],1],
+["GK","What is the national animal of India?",["Lion","Elephant","Tiger","Leopard"],2],
+["GK","Which planet is known as the Red Planet?",["Venus","Mars","Jupiter","Saturn"],1],
+["GK","How many days are there in a leap year?",["365","364","366","367"],2],
+["GK","Who wrote India's national anthem?",["Bankim Chandra","Rabindranath Tagore","Premchand","Sarojini Naidu"],1],
+["GK","Which is the largest Indian state by area?",["Uttar Pradesh","Madhya Pradesh","Rajasthan","Maharashtra"],2],
+["GK","The Ganga originates from which glacier?",["Siachen","Gangotri","Zemu","Pindari"],1],
+["GK","What is the currency of Japan?",["Yuan","Won","Yen","Dollar"],2],
+["GK","Which gas do plants absorb during photosynthesis?",["Oxygen","Nitrogen","Carbon dioxide","Hydrogen"],2],
+["Maths","What is 25% of 200?",["25","40","50","75"],2],
+["Maths","What is 15 + 27?",["32","42","43","52"],1],
+["Maths","What is 12 × 8?",["86","92","96","108"],2],
+["Maths","What is the square of 9?",["18","72","81","99"],2],
+["Maths","A dozen equals how many?",["10","12","15","20"],1],
+["Maths","What is 100 divided by 4?",["20","25","40","50"],1],
+["Reasoning","Find the next number: 2, 4, 6, 8, ?",["9","10","12","14"],1],
+["Reasoning","Which one is different?",["Apple","Mango","Carrot","Banana"],2],
+["Reasoning","If A=1, B=2, then D=?",["3","4","5","6"],1],
+["Reasoning","Find the next letter: A, C, E, G, ?",["H","I","J","K"],1],
+["Reasoning","Which number is the smallest?",["17","7","27","37"],1],
+["English","Choose the plural of 'child'.",["Childs","Childes","Children","Childrens"],2],
+["English","Choose the opposite of 'Hot'.",["Warm","Cold","Heat","Boil"],1],
+["English","Choose the correct spelling.",["Beautifull","Beutiful","Beautiful","Beautyfull"],2],
+["English","Fill in the blank: She ___ a student.",["am","are","is","be"],2]
+];
+
+const rpfQs = [
+["History","Who founded the Maurya Empire?",["Chandragupta Maurya","Ashoka","Harsha","Kanishka"],0],
+["History","Who was the first Mughal emperor?",["Akbar","Babur","Humayun","Jahangir"],1],
+["History","In which year did the Revolt of 1857 begin?",["1757","1857","1885","1942"],1],
+["Geography","Which is the longest river in India?",["Yamuna","Godavari","Ganga","Narmada"],2],
+["Polity","Who is the constitutional head of India?",["Prime Minister","President","Chief Justice","Governor"],1],
+["Science","What is the chemical formula of water?",["CO2","O2","H2O","NaCl"],2],
+["Science","Which planet is known as the Red Planet?",["Venus","Mars","Jupiter","Saturn"],1],
+["Maths","What is 25% of 200?",["25","40","50","75"],2],
+["Maths","What is 12 × 8?",["86","96","108","88"],1],
+["Reasoning","Find the next number: 2, 4, 6, 8, ?",["9","10","12","14"],1],
+["History","Who founded the Indian National Congress?",["Mahatma Gandhi","A.O. Hume","Jawaharlal Nehru","Bal Gangadhar Tilak"],1],
+["History","Who gave the slogan Jai Jawan Jai Kisan?",["Mahatma Gandhi","Lal Bahadur Shastri","Subhas Chandra Bose","Sardar Patel"],1],
+["Polity","How many Fundamental Duties are there in the Indian Constitution?",["10","11","12","9"],1],
+["Polity","Which Article deals with equality before law?",["Article 14","Article 19","Article 21","Article 32"],0],
+["Geography","Which is the largest Indian state by area?",["Uttar Pradesh","Madhya Pradesh","Rajasthan","Maharashtra"],2],
+["Geography","Which is the smallest Indian state by area?",["Sikkim","Goa","Tripura","Manipur"],1],
+["Science","Which gas do plants absorb during photosynthesis?",["Oxygen","Nitrogen","Carbon dioxide","Hydrogen"],2],
+["Science","What is the SI unit of force?",["Joule","Watt","Newton","Pascal"],2],
+["Science","Which organ pumps blood in the human body?",["Lungs","Brain","Heart","Kidney"],2],
+["Maths","What is 15% of 200?",["20","25","30","35"],2],
+["Maths","What is the square of 13?",["156","169","179","144"],1],
+["Maths","A train travels 60 km in 1 hour. How far in 3 hours at the same speed?",["120 km","150 km","180 km","200 km"],2],
+["Reasoning","Find the next number: 3, 6, 9, 12, ?",["13","14","15","16"],2],
+["Reasoning","Find the odd one out.",["Apple","Mango","Banana","Carrot"],3],
+["Reasoning","If A=1, B=2, C=3, what is the value of D?",["2","3","4","5"],2],
+
+];
+let i=0,ans=[],secs=1125,clock=null,currentExam="SSC GD";
+let activeQs = [];
+let correctMarks = 2;
+let wrongMarks = 0.25;
+  
+function openExam(name){
+currentExam=name;
+document.getElementById("home").style.display="none";
+document.getElementById("test").style.display="none";
+document.getElementById("result").style.display="none";
+document.getElementById("section").style.display="block";
+document.getElementById("examTitle").textContent=name+" Practice";
+const ready=name==="SSC GD" || name==="RRB RPF";
+document.getElementById("examDesc").textContent=ready?
+name+" • 25 demo questions":
+name+" • Practice section";
+document.getElementById("startBtn").style.display=ready?"block":"none";
+document.getElementById("startArea").querySelector("p").textContent=ready?
+"25 practice questions with a timed test.":
+"This exam category has been added to the home screen, but its question bank has not been added yet.";
+}
+function goHome(){
+clearInterval(clock);
+document.getElementById("home").style.display="block";
+document.getElementById("section").style.display="none";
+document.getElementById("test").style.display="none";
+document.getElementById("result").style.display="none";
+
+}
+
+function begin(){
+clearInterval(clock);
+
+const activeQs = currentExam === "RRB RPF" ? rpfQs : qs;
+
+correctMarks = currentExam === "RRB RPF" ? 1 : 2;
+wrongMarks = currentExam === "RRB RPF" ? (1/3) : 0.25;
+
+i=0;
+ans=Array(activeQs.length).fill(null);
+secs=1125;
+
+document.getElementById("home").style.display="none";
+document.getElementById("section").style.display="none";
+document.getElementById("result").style.display="none";
+document.getElementById("test").style.display="block";
+
+showQ();
+tick();
+
+clock=setInterval(()=>{
+secs--;
+tick();
+if(secs<=0)finish();
+},1000);
+}
+function tick(){
+document.getElementById("timer").textContent=
+String(Math.floor(secs/60)).padStart(2,"0")+":"+
+String(secs%60).padStart(2,"0");
+}
+function getBookmarks() {
+  try {
+    return JSON.parse(localStorage.getItem("examChampionBookmarks")) || [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function toggleBookmark() {
+  const activeQuestion = activeQs[i];
+  const bookmarks = getBookmarks();
+
+  const questionId = currentExam + "|" + activeQuestion[0] + "|" + activeQuestion[1];
+
+  const existingIndex = bookmarks.findIndex(
+    q => q.id === questionId
+  );
+
+  if (existingIndex >= 0) {
+    bookmarks.splice(existingIndex, 1);
+  } else {
+    bookmarks.push({
+      id: questionId,
+      exam: currentExam,
+      subject: activeQuestion[0],
+      question: activeQuestion[1],
+      options: activeQuestion[2],
+      answer: activeQuestion[3]
+    });
+  }
+
+  localStorage.setItem("examChampionBookmarks", JSON.stringify(bookmarks));
+  updateBookmarkButton();
+}
+
+function updateBookmarkButton() {
+  const btn = document.getElementById("bookmarkBtn");
+  if (!btn || !activeQs || !activeQs[i]) return;
+
+  const activeQuestion = activeQs[i];
+  const questionId = currentExam + "|" + activeQuestion[0] + "|" + activeQuestion[1];
+  const saved = getBookmarks().some(q => q.id === questionId);
+
+  btn.textContent = saved ? "★ Bookmarked (Remove)" : "☆ Bookmark Question";
+}
+  
+function showSavedQuestions() {
+alert("Saved Questions button clicked!");
+  document.getElementById("home").style.display = "none";
+  document.getElementById("test").style.display = "none";
+  document.getElementById("result").style.display = "none";
+  document.getElementById("savedQuestions").style.display = "block";
+
+  renderSavedQuestions();
+}
+
+function renderSavedQuestions() {
+  const bookmarks = getBookmarks();
+  const list = document.getElementById("savedQuestionList");
+  const message = document.getElementById("savedQuestionMessage");
+  const count = document.getElementById("bookmarkCount");
+
+  count.textContent = bookmarks.length + 
+    (bookmarks.length === 1 ? " question saved" : " questions saved");
+
+  list.innerHTML = "";
+
+  if (bookmarks.length === 0) {
+    message.textContent = "No saved questions yet. Bookmark questions during a mock test!";
+    return;
+  }
+
+  message.textContent = "Your bookmarked questions:";
+
+  bookmarks.forEach((q, index) => {
+    const card = document.createElement("div");
+    card.className = "study-card";
+    card.style.marginTop = "12px";
+
+    const heading = document.createElement("h3");
+    heading.textContent = (index + 1) + ". " + q.question;
+
+    const details = document.createElement("p");
+    details.textContent = q.exam + " • " + q.subject;
+
+    const options = document.createElement("p");
+    options.textContent = q.options
+      .map((option, i) => String.fromCharCode(65 + i) + ". " + option)
+      .join(" | ");
+
+    const answer = document.createElement("p");
+    answer.textContent = "Correct Answer: " +
+      (q.options[q.answer] ?? "Not available");
+
+    const remove = document.createElement("button");
+    remove.className = "primary";
+    remove.textContent = "Remove Bookmark";
+    remove.onclick = () => {
+      const latest = getBookmarks();
+      const pos = latest.findIndex(item => item.id === q.id);
+
+      if (pos !== -1) {
+        latest.splice(pos, 1);
+        localStorage.setItem("examChampionBookmarks", JSON.stringify(latest));
+      }
+
+      renderSavedQuestions();
+      updateBookmarkButton();
+    };
+
+    card.append(heading, details, options, answer, remove);
+    list.appendChild(card);
+  });
+}
+
+  
+function updateBookmarkButton() {
+  const btn = document.getElementById("bookmarkBtn");
+  if (!btn || !activeQs || !activeQs[i]) return;
+
+  const activeQuestion = activeQs[i];
+  const questionId = currentExam + "|" + activeQuestion[0] + "|" + activeQuestion[1];
+  const saved = getBookmarks().some(q => q.id === questionId);
+
+  btn.textContent = saved ? "★ Bookmarked (Remove)" : "☆ Bookmark Question";
+}
+
+function showSavedQuestions() {
+  document.getElementById("home").style.display = "none";
+  document.getElementById("test").style.display = "none";
+  document.getElementById("result").style.display = "none";
+  document.getElementById("savedQuestions").style.display = "block";
+
+  renderSavedQuestions();
+}
+
+function showQ(){
+activeQs = currentExam === "RETRY"
+  ? retryQs
+  : currentExam === "RRB RPF" ? rpfQs : qs;
+
+document.getElementById("progress").textContent =
+(currentExam === "RETRY" ? "Retry Question " : "Question ")
++(i+1)+" of "+activeQs.length;
+
+document.getElementById("category").textContent=activeQs[i][0];
+document.getElementById("question").textContent=activeQs[i][1];
+document.getElementById("feedback").textContent="";
+updateBookmarkButton();
+const box=document.getElementById("options");
+box.innerHTML="";
+
+activeQs[i][2].forEach((v,j)=>{
+const b=document.createElement("button");
+b.className="option"+(ans[i]===j?" selected":"");
+b.textContent=String.fromCharCode(65+j)+". "+v;
+b.onclick=()=>{ans[i]=j;showQ()};
+box.appendChild(b);
+});
+}
+
+
+function nextQ(){
+const activeQs = currentExam === "RETRY"
+  ? retryQs
+  : currentExam === "RRB RPF" ? rpfQs : qs;
+
+if(i < activeQs.length-1){
+i++;
+showQ();
+}else{
+if(currentExam === "RETRY"){
+finishRetry();
+}else{
+finish();
+}
+}
+}
+
+
+let retryQs = [];
+let retrySourceExam = "";
+
+  
+const HISTORY_KEY = "examChampionHistory";
+
+function getTestHistory() {
+  try {
+    return JSON.parse(localStorage.getItem(HISTORY_KEY)) || [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function saveTestHistory(record) {
+  const history = getTestHistory();
+  history.unshift(record);
+
+  // Keep the latest 100 test results
+  localStorage.setItem(
+    HISTORY_KEY,
+    JSON.stringify(history.slice(0, 100))
+  );
+}
+
+function getTodayStreakDate() {
+  const d = new Date();
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function updateStudyStreak() {
+  const key = "examChampionStudyStreak";
+  const today = getTodayStreakDate();
+
+  let data;
+
+  try {
+    data = JSON.parse(localStorage.getItem(key));
+  } catch (e) {
+    data = null;
+  }
+
+  if (!data) {
+    data = {
+      lastDate: "",
+      current: 0,
+      longest: 0
+    };
+  }
+
+  if (data.lastDate !== today) {
+    const yesterdayDate = new Date();
+    yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+
+    const y = yesterdayDate.getFullYear();
+    const m = String(yesterdayDate.getMonth() + 1).padStart(2, "0");
+    const d = String(yesterdayDate.getDate()).padStart(2, "0");
+    const yesterday = `${y}-${m}-${d}`;
+
+    if (data.lastDate === yesterday) {
+      data.current += 1;
+    } else {
+      data.current = 1;
+    }
+
+    data.lastDate = today;
+    data.longest = Math.max(data.longest, data.current);
+  }
+
+  localStorage.setItem(key, JSON.stringify(data));
+  renderStudyStreak();
+}
+
+function renderStudyStreak() {
+  const key = "examChampionStudyStreak";
+  let data;
+
+  try {
+    data = JSON.parse(localStorage.getItem(key));
+  } catch (e) {
+    data = null;
+  }
+
+  if (!data) {
+    data = { lastDate: "", current: 0, longest: 0 };
+  }
+
+  const today = getTodayStreakDate();
+  const current = data.lastDate === today ? data.current : 0;
+
+  document.getElementById("currentStreak").textContent =
+    current + (current === 1 ? " day" : " days");
+
+  document.getElementById("longestStreak").textContent =
+    data.longest + (data.longest === 1 ? " day" : " days");
+
+  document.getElementById("streakMessage").textContent =
+    current > 0
+      ? "🔥 Great work! Today's study goal has started."
+      : "Complete a mock test today to start your streak!";
+}
+
+
+function finish(){
+clearInterval(clock);
+updateStudyStreak();
+document.getElementById("test").style.display="none";
+document.getElementById("result").style.display="block";
+
+const activeQs = currentExam === "RRB RPF" ? rpfQs : qs;
+let correct=0,wrong=0,skip=0;
+let totalScore = 0;
+let reviewHTML="";
+  
+let subjectStats = {};
+
+function getSubjectName(category) {
+  const name = String(category).toLowerCase();
+
+  if (name.includes("gk") || name.includes("general knowledge"))
+    return "GK";
+  if (name.includes("math") || name.includes("quant"))
+    return "Maths";
+  if (name.includes("reason"))
+    return "Reasoning";
+  if (name.includes("english"))
+    return "English";
+
+  return String(category || "Other");
+}
+
+
+activeQs.forEach((q,j)=>{
+const userAns=ans[j];
+const skipped=userAns===null;
+const isCorrect=!skipped && userAns===q[3];
+  
+const subject = getSubjectName(q[0]);
+
+if (!subjectStats[subject]) {
+  subjectStats[subject] = {
+    total: 0,
+    correct: 0,
+    wrong: 0,
+    skipped: 0
+  };
+}
+
+subjectStats[subject].total++;
+
+if (skipped) {
+  subjectStats[subject].skipped++;
+} else if (isCorrect) {
+  subjectStats[subject].correct++;
+} else {
+  subjectStats[subject].wrong++;
+}
+
+ 
+if(skipped){
+skip++;
+}else if(isCorrect){
+correct++;
+totalScore += correctMarks;
+}else{
+wrong++;
+totalScore -= wrongMarks;
+}
+
+const status=skipped?"SKIPPED":isCorrect?"CORRECT":"WRONG";
+const color=skipped?"#b7791f":isCorrect?"#16803c":"#c62828";
+const chosen=skipped?"Not answered":q[2][userAns];
+
+reviewHTML+=`
+<div style="border:1px solid #ccc;border-radius:10px;padding:12px;margin:12px 0">
+<p><b>Q${j+1}. ${q[1]}</b></p>
+<p style="color:${color}"><b>${status}</b></p>
+<p>Your answer: ${chosen}</p>
+<p style="color:#16803c">Correct answer: ${q[2][q[3]]}</p>
+</div>`;
+});
+
+
+saveTestHistory({
+  exam: currentExam,
+  date: new Date().toLocaleString(),
+  score: Number(totalScore.toFixed(2)),
+  correct: correct,
+  wrong: wrong,
+  skipped: skip,
+  total: activeQs.length,
+  accuracy: activeQs.length
+    ? Number((correct / activeQs.length * 100).toFixed(1))
+    : 0,
+  subjects: subjectStats,
+});
+
+document.getElementById("score").textContent=
+"Score: "+totalScore.toFixed(2)+" marks";
+document.getElementById("details").textContent=
+"Correct: "+correct+" | Wrong: "+wrong+" | Skipped: "+skip;
+document.getElementById("review").innerHTML=reviewHTML;
+}
+
+function retryWrong(){
+const sourceQs=currentExam==="RRB RPF"?rpfQs:qs;
+retrySourceExam=currentExam;
+
+retryQs=sourceQs.filter((q,j)=>ans[j]!==null && ans[j]!==q[3]);
+
+if(retryQs.length===0){
+alert("No wrong answers to retry!");
+return;
+}
+
+currentExam="RETRY";
+i=0;
+ans=Array(retryQs.length).fill(null);
+secs=1125;
+
+document.getElementById("result").style.display="none";
+document.getElementById("test").style.display="block";
+showQ();
+}
+
+function finishRetry(){
+clearInterval(clock);
+document.getElementById("test").style.display="none";
+document.getElementById("result").style.display="block";
+
+let correct=0,wrong=0,skip=0;
+let reviewHTML="";
+
+retryQs.forEach((q,j)=>{
+const userAns=ans[j];
+const skipped=userAns===null;
+const isCorrect=!skipped && userAns===q[3];
+  
+const subject = getSubjectName(q[0]);
+
+if (!subjectStats[subject]) {
+  subjectStats[subject] = {
+    correct: 0,
+    wrong: 0,
+    skipped: 0
+  };
+}
+
+if (skipped) {
+  subjectStats[subject].skipped++;
+} else if (isCorrect) {
+  subjectStats[subject].correct++;
+} else {
+  subjectStats[subject].wrong++;
+}
+
+
+if(skipped)skip++;
+else if(isCorrect)correct++;
+else wrong++;
+
+reviewHTML+=`
+<div style="border:1px solid #ccc;border-radius:10px;padding:12px;margin:12px 0">
+<p><b>Q${j+1}. ${q[1]}</b></p>
+<p>${skipped?"SKIPPED":isCorrect?"CORRECT":"WRONG"}</p>
+<p>Your answer: ${skipped?"Not answered":q[2][userAns]}</p>
+<p>Correct answer: ${q[2][q[3]]}</p>
+</div>`;
+});
+
+document.getElementById("score").textContent=
+"Retry Score: "+correct+" / "+retryQs.length;
+document.getElementById("details").textContent=
+"Correct: "+correct+" | Wrong: "+wrong+" | Skipped: "+skip;
+document.getElementById("review").innerHTML=reviewHTML;
+
+currentExam=retrySourceExam;
+}
+
+function showHistory() {
+  const history = getTestHistory();
+  drawProgressChart(history);
+  const list = document.getElementById("historyList");
+  const summary = document.getElementById("historySummary");
+
+  if (!history.length) {
+    summary.innerHTML = "<p>No tests completed yet.</p>";
+    list.innerHTML = "";
+    return;
+  }
+
+  const totalTests = history.length;
+  const bestScore = Math.max(...history.map(x => x.score));
+  const avgAccuracy = history.reduce((sum, x) => sum + x.accuracy, 0) / totalTests;
+
+  
+  const subjects = ["GK", "Maths", "Reasoning", "English"];
+
+  const subjectTotals = {};
+
+  history.forEach(test => {
+    const data = test.subjects || {};
+
+    subjects.forEach(subject => {
+      if (!subjectTotals[subject]) {
+        subjectTotals[subject] = {
+          total: 0,
+          correct: 0,
+          wrong: 0,
+          skipped: 0
+        };
+      }
+
+      const s = data[subject];
+      if (s) {
+        subjectTotals[subject].total += Number(s.total || 0);
+        subjectTotals[subject].correct += Number(s.correct || 0);
+        subjectTotals[subject].wrong += Number(s.wrong || 0);
+        subjectTotals[subject].skipped += Number(s.skipped || 0);
+      }
+    });
+  });
+
+  summary.innerHTML = `
+    <div class="card">
+      <p>📝 Total Tests: <b>${totalTests}</b></p>
+      <p>🏆 Best Score: <b>${bestScore.toFixed(2)}</b></p>
+      <p>🎯 Average Accuracy: <b>${avgAccuracy.toFixed(1)}%</b></p>
+    </div>
+
+    <h3>📚 Subject-wise Progress</h3>
+
+    ${subjects.map(subject => {
+      const s = subjectTotals[subject];
+      const accuracy = s.total
+        ? (s.correct / s.total * 100)
+        : 0;
+
+      return `
+        <div class="card">
+          <h3>${subject}</h3>
+          <p>Questions Attempted/Tested: <b>${s.total}</b></p>
+          <p>✅ Correct: ${s.correct}</p>
+          <p>❌ Wrong: ${s.wrong}</p>
+          <p>⏭️ Skipped: ${s.skipped}</p>
+          <p>🎯 Accuracy: <b>${accuracy.toFixed(1)}%</b></p>
+          <div style="background:#ddd;border-radius:8px;height:10px;overflow:hidden">
+            <div style="background:#16803c;width:${accuracy}%;height:10px"></div>
+          </div>
+        </div>
+      `;
+    }).join("")}
+  `;
+}
+
+
+function drawProgressChart(history) {
+  const chart = document.getElementById("progressChart");
+  const message = document.getElementById("progressMessage");
+
+  if (!history.length) {
+    chart.innerHTML = "<p class='muted'>Complete a mock test to see your graph.</p>";
+    message.textContent = "";
+    return;
+  }
+
+  const recent = history.slice(0, 10).reverse();
+  const maxScore = Math.max(1, ...recent.map(x => Number(x.score) || 0));
+  const minScore = Math.min(0, ...recent.map(x => Number(x.score) || 0));
+  const range = Math.max(1, maxScore - minScore);
+
+  const points = recent.map((x, i) => {
+    const px = 20 + (recent.length === 1 ? 0 : i * 260 / (recent.length - 1));
+    const py = 150 - ((Number(x.score) - minScore) / range) * 120;
+    return { x: px, y: py, score: Number(x.score) || 0 };
+  });
+
+  const line = points.map(p => `${p.x},${p.y}`).join(" ");
+  const dots = points.map((p, i) =>
+    `<circle cx="${p.x}" cy="${p.y}" r="4" fill="#67e8f9">
+      <title>Test ${i + 1}: ${p.score} marks</title>
+    </circle>`
+  ).join("");
+
+  chart.innerHTML = `
+    <p class="muted">Latest ${recent.length} tests · Marks</p>
+    <svg viewBox="0 0 300 175" width="100%" role="img"
+         aria-label="Mock test score progress graph">
+      <line x1="20" y1="150" x2="280" y2="150" stroke="#64748b"/>
+      <polyline points="${line}" fill="none" stroke="#67e8f9"
+        stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      ${dots}
+      ${points.map((p, i) => `
+        <text x="${p.x}" y="${Math.max(12, p.y - 10)}"
+          fill="#f1f5f9" font-size="10" text-anchor="middle">${p.score}</text>
+      `).join("")}
+    </svg>
+  `;
+
+  if (recent.length >= 2) {
+    const first = recent[0].score;
+    const last = recent[recent.length - 1].score;
+    const change = Number(last) - Number(first);
+
+    message.textContent = change > 0
+      ? `📈 Your score increased by ${change.toFixed(2)} marks.`
+      : change < 0
+        ? `📉 Your score decreased by ${Math.abs(change).toFixed(2)} marks.`
+        : "➡️ Your score stayed the same.";
+  } else {
+    message.textContent = "Complete another test to compare your scores.";
+  }
+}
+
+
+function openHistory() {
+  clearInterval(clock);
+  document.getElementById("home").style.display = "none";
+  document.getElementById("section").style.display = "none";
+  document.getElementById("test").style.display = "none";
+  document.getElementById("result").style.display = "none";
+  document.getElementById("history").style.display = "block";
+  showHistory();
+}
+
+function backHome() {
+  document.getElementById("history").style.display = "none";
+  document.getElementById("home").style.display = "block";
+  renderStudyStreak();
+}
+
+</script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
+
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signInWithPhoneNumber,
+  RecaptchaVerifier,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAJ-6labeng_RrVANFtUeaMI6bhsBE6ar0",
+  authDomain: "prepx-ae993.firebaseapp.com",
+  projectId: "prepx-ae993",
+  storageBucket: "prepx-ae993.firebasestorage.app",
+  messagingSenderId: "512379146847",
+  appId: "1:512379146847:web:5eaf77b13d2c79834b01ea"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
+
+let confirmationResult = null;
+let recaptchaVerifier = null;
+
+function showMessage(message) {
+  document.getElementById("loginMessage").textContent = message;
+}
+
+window.loginWithGoogle = async function () {
+  try {
+    showMessage("Opening Google sign-in...");
+    await signInWithPopup(auth, googleProvider);
+  } catch (error) {
+    showMessage(error.message);
+  }
+};
+
+window.loginWithPhone = function () {
+  document.getElementById("phoneNumber").focus();
+  showMessage("Enter your phone number with country code, e.g. +91...");
+};
+
+window.sendPhoneOTP = async function () {
+  try {
+    const phone = document.getElementById("phoneNumber").value.trim();
+
+    if (!/^\+[1-9]\d{7,14}$/.test(phone)) {
+      showMessage("Enter a valid number with country code, e.g. +91...");
+      return;
+    }
+
+    showMessage("Verifying...");
+
+    if (!recaptchaVerifier) {
+      recaptchaVerifier = new RecaptchaVerifier(
+        auth,
+        "recaptcha-container",
+        { size: "normal" }
+      );
+    }
+
+    await recaptchaVerifier.render();
+
+    confirmationResult = await signInWithPhoneNumber(
+      auth,
+      phone,
+      recaptchaVerifier
+    );
+
+    showMessage("OTP sent! Please check your phone.");
+  } catch (error) {
+    showMessage(error.message);
+
+    if (recaptchaVerifier) {
+      recaptchaVerifier.clear();
+      recaptchaVerifier = null;
+    }
+  }
+};
+
+window.verifyPhoneOTP = async function () {
+  try {
+    const otp = document.getElementById("otpCode").value.trim();
+
+    if (!confirmationResult) {
+      showMessage("Please request an OTP first.");
+      return;
+    }
+
+    if (!/^\d{6}$/.test(otp)) {
+      showMessage("Enter the 6-digit OTP.");
+      return;
+    }
+
+    await confirmationResult.confirm(otp);
+    showMessage("Login successful!");
+  } catch (error) {
+    showMessage(error.message);
+  }
+};
+
+onAuthStateChanged(auth, (user) => {
+  const loginScreen = document.getElementById("loginScreen");
+
+  if (user) {
+    loginScreen.style.display = "none";
+  } else {
+    loginScreen.style.display = "flex";
+  }
+});
+</script>
+</body>
+</html>
+
